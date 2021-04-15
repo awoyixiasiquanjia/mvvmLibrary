@@ -114,7 +114,8 @@ public class LightWebActivity extends BaseMvvmActivity<ActivityLightwebviewBindi
     private FrameLayout mFullscreenContainer;
     private IX5WebChromeClient.CustomViewCallback mCustomViewCallback;
 
-    private Handler mHandler = new Handler() {
+    @SuppressLint("HandlerLeak")
+    private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(final Message msg) {
             switch (msg.what) {

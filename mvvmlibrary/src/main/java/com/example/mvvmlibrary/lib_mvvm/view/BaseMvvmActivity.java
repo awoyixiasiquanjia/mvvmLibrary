@@ -1,4 +1,5 @@
 package com.example.mvvmlibrary.lib_mvvm.view;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.annotation.LayoutRes;
@@ -37,7 +38,8 @@ public abstract class BaseMvvmActivity<VB extends ViewDataBinding, VM extends Ba
             mBinding.getRoot().setFitsSystemWindows(true);
             setContentView(mBinding.getRoot());
         }
-        Bundle extras = getIntent().getExtras();
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//竖屏
+         Bundle extras = getIntent().getExtras();
         if (null != extras) {
             getBundleExtras(extras);
         }
