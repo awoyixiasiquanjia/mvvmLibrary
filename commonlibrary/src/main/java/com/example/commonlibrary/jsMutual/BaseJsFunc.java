@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.fastjson.JSON;
+import com.example.commonlibrary.R;
 import com.example.commonlibrary.bean.AddrItemBean;
 import com.example.commonlibrary.bean.JsBean;
 import com.example.commonlibrary.constant.ArouterUrl;
@@ -365,6 +366,17 @@ public class BaseJsFunc {
                     }
                     String selectIcomeorgUrl = "icomek://addressbook/org?singleMode="+jsBean.getParams().getSingleMode()+"&chooseElements="+chooseElements+"&disableElements="+disableElements;
                     URLSchemeService.iComeURLSchemeServiceV1(mActivity,selectIcomeorgUrl,null);
+                    break;
+                case JsConstants.SYSTEM.OPEN_WEB_VIEW:
+                    String url = jsBean.getParams().getUrl();
+                    String title = jsBean.getParams().getTitle();
+                    if (!TextUtils.isEmpty(url)) {
+                        ARouter.getInstance().build(ArouterUrl.LIGHTWEBACURL)
+                                .withString("common_uri",url)
+                                .withString("common_title",title)
+                                .navigation();
+                    }
+
                     break;
             }
         } catch (Exception e) {
