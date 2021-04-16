@@ -140,6 +140,12 @@ public class LightWebActivity extends BaseMvvmActivity<ActivityLightwebviewBindi
                         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.DRAG_FLAG_GLOBAL_URI_WRITE);
                     }
                     break;
+                case JsConstants.ANDROID_BACK:
+                    Object obj = msg.obj;
+                    if (obj instanceof String){
+                        android_back = (String) msg.obj;
+                    }
+                    break;
                 case JsConstants.BACK_EVENT_CLOAW:
                     if (msg.arg1 == 1){
                         isClose = true;
@@ -611,6 +617,10 @@ public class LightWebActivity extends BaseMvvmActivity<ActivityLightwebviewBindi
                     mWebView.goBack();
                     return true;
                 } else {
+                    if (!TextUtils.isEmpty(android_back)){
+                        baseJsFunc.callBackHtml(android_back, "");
+                        return true;
+                    }
                     //当WebView处于第一页面时,直接退出
                     finish();
                 }
