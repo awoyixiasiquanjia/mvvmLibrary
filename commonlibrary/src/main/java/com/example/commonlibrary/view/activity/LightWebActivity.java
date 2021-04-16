@@ -114,7 +114,8 @@ public class LightWebActivity extends BaseMvvmActivity<ActivityLightwebviewBindi
     private FrameLayout mFullscreenContainer;
     private IX5WebChromeClient.CustomViewCallback mCustomViewCallback;
 
-    private Handler mHandler = new Handler() {
+    @SuppressLint("HandlerLeak")
+    private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(final Message msg) {
             switch (msg.what) {
@@ -267,7 +268,7 @@ public class LightWebActivity extends BaseMvvmActivity<ActivityLightwebviewBindi
     private void initJSExeLocaMethod() {
         // --------html调用我们本地方法-----------
         baseJsFunc = new BaseJsFunc(LightWebActivity.this, mHandler, mWebView);
-        mWebView.addJavascriptInterface(baseJsFunc, "baseJsFunc");
+        mWebView.addJavascriptInterface(baseJsFunc, "icome");
     }
 
     private void initWebviewClient() {
