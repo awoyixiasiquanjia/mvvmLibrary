@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.commonlibrary.constant.ArouterUrl;
@@ -39,6 +40,7 @@ public class StartUpActivity extends BaseMvvmActivity<ActivityStartupBinding, Ba
                             @Override
                             public void run() {
                                 handler.sendEmptyMessage(3);
+                                mBinding.tvSkip.setVisibility(View.VISIBLE);
                                 mBinding.tvSkip.setText("跳过"+countTime+"S");
                                 countTime --;
                             }
@@ -47,6 +49,16 @@ public class StartUpActivity extends BaseMvvmActivity<ActivityStartupBinding, Ba
                 }
             }
         };
+        mBinding.tvSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build(ArouterUrl.LIGHTWEBACURL)
+                        .withString("common_uri","http://dgb-user-h5.dev.ennewi.cn")
+                        .withString("common_title","测试页面")
+                        .navigation();
+                finish();
+            }
+        });
         handler.sendEmptyMessage(SPLASHCODDE);
     }
 

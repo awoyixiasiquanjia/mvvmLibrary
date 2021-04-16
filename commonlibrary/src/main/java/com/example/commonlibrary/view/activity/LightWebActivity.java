@@ -147,6 +147,7 @@ public class LightWebActivity extends BaseMvvmActivity<ActivityLightwebviewBindi
 
         }
     };
+
     private LinearLayout ll;
     private String isHeader;
     private String isLandScape;
