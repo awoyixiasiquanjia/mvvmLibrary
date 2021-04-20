@@ -11,7 +11,7 @@
     <style name="AppThemeIcome" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="android:windowBackground">@mipmap/icon_start_up_fff</item>
+        <item name="android:windowBackground">@color/white</item>
         <!--修改toobar溢出图标颜色-->
         <item name="android:windowTranslucentStatus">true</item>
         <item name="colorControlNormal">@android:color/white</item>
