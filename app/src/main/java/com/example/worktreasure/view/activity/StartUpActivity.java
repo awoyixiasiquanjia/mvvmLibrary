@@ -57,12 +57,7 @@ public class StartUpActivity extends BaseMvvmActivity<ActivityStartupBinding, Ba
         mBinding.tvSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ARouter.getInstance().build(ArouterUrl.LIGHTWEBACURL)
-//                .withString("common_uri","http://dgb-user-h5.dev.ennewi.cn")
-                        .withString("common_uri","http://10.2.153.37:18081/")
-                        .withString("common_title","测试页面")
-                        .navigation();
-                finish();
+                jumpLightWeb();
             }
         });
         handler.sendEmptyMessage(SPLASHCODDE);
