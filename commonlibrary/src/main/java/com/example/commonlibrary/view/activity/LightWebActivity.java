@@ -26,6 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -58,6 +59,8 @@ import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -158,6 +161,16 @@ public class LightWebActivity extends BaseMvvmActivity<ActivityLightwebviewBindi
     private LinearLayout ll;
     private String isHeader;
     private String isLandScape;
+
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        if (!isTaskRoot()){
+            finish();
+        }
+        super.onCreate(savedInstanceState);
+    }
+
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.left_btn_bg) {
@@ -224,7 +237,7 @@ public class LightWebActivity extends BaseMvvmActivity<ActivityLightwebviewBindi
     }
 
     @Override
-    protected void getBundleExtras(Bundle extras) {
+    protected void getBundleExtras(@NotNull Bundle extras) {
         UiUtils.setStatusBar(this);
         isHeader = extras.getString("isHeader");
         isLandScape=extras.getString("isLandScape");

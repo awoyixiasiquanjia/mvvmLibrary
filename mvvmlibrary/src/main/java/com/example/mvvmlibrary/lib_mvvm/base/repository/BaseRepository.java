@@ -144,7 +144,7 @@ public abstract class BaseRepository<I> implements IBaseRepository {
      * 获取统一url
      */
     protected String getBaseUrl() {
-        return "http://10.39.35.11:8071/";
+        return "http://rdfa-gateway.dev.ennewi.cn/";
     }
 
     public final class UIChangeLiveData extends SingleLiveEvent {

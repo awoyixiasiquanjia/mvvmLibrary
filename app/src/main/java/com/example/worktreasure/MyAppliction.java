@@ -1,10 +1,13 @@
 package com.example.worktreasure;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.example.worktreasure.utils.PushUtils;
 
 public class MyAppliction extends Application {
+    public static Context context;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -13,5 +16,10 @@ public class MyAppliction extends Application {
         // 线上版本需要关闭，否则有安全风险）
         ARouter.openDebug();
         ARouter.init(this);
+        //开始轮询
+        PushUtils.getIntance(this).start();
+        context = this;
     }
+
+
 }
