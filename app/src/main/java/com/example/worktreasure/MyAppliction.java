@@ -17,7 +17,7 @@ public class MyAppliction extends Application {
         ARouter.openDebug();
         ARouter.init(this);
         //开始轮询
-        PushUtils.getIntance(this).start();
+     //   PushUtils.getIntance(this).start();
         context = this;
     }
 
