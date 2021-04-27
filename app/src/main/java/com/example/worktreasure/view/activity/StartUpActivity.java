@@ -91,11 +91,15 @@ public class StartUpActivity extends BaseMvvmActivity<ActivityStartupBinding, Ba
 
     public void requestPermission() {
         //权限检查
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+        if ((ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                |ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                |ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA))
+                != PackageManager.PERMISSION_GRANTED) {
             //申请权限
             ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.READ_EXTERNAL_STORAGE,
+                            Manifest.permission.CAMERA}, 1);
         }else{
             jumpLightWeb();
         }
@@ -152,8 +156,8 @@ public class StartUpActivity extends BaseMvvmActivity<ActivityStartupBinding, Ba
 
     private void jumpLightWeb() {
         ARouter.getInstance().build(ArouterUrl.LIGHTWEBACURL)
-//                .withString("common_uri","http://dgb-user-h5.dev.ennewi.cn")
-                .withString("common_uri","http://10.2.155.101:18080/")
+                .withString("common_uri","http://dgb-user-h5.dev.ennewi.cn")
+//                .withString("common_uri","http://10.2.155.101:18080/")
                 .withString("common_title","测试页面")
                 .navigation();
         finish();
