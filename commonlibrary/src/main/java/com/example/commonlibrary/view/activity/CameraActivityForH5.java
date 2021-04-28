@@ -26,6 +26,7 @@ import com.example.commonlibrary.databinding.ActivityCameraForH5Binding;
 import com.example.commonlibrary.utils.BitmapUtil;
 import com.example.commonlibrary.utils.FileUtil;
 import com.example.commonlibrary.utils.JsonUils;
+import com.example.mvvmlibrary.lib_mvvm.utils.ToastUtil;
 import com.example.mvvmlibrary.lib_mvvm.view.BaseMvvmActivity;
 import com.example.mvvmlibrary.lib_mvvm.viewmodel.BaseViewModel;
 import com.laikang.jtcameraview.CameraStateListener;
@@ -59,6 +60,8 @@ public class CameraActivityForH5 extends BaseMvvmActivity<ActivityCameraForH5Bin
     @Override
     protected void initView() {
         diskLruCache  = FileUtil.getDisk(this);
+        mBinding.ftdv.setListener(this);
+        mBinding.setCameraClick(new CameraClick());
 
     }
 
@@ -246,6 +249,27 @@ public class CameraActivityForH5 extends BaseMvvmActivity<ActivityCameraForH5Bin
     }
 
     private int mFacing = CAMERA_FACING_FRONT;
+
+    public class CameraClick{
+        public void takePhoto(){
+            if (isFastClick()){
+                    return;
+                }
+                shootSound();
+                mBinding.ftdv.takePicture();
+        }
+        public void finish(){
+            CameraActivityForH5.this.finish();
+        }
+        public void imageSwitch(){
+            if (mFacing == CAMERA_FACING_FRONT) {
+                    mFacing = CAMERA_FACING_BACK;
+                } else {
+                    mFacing = CAMERA_FACING_FRONT;
+                }
+            mBinding.ftdv.setCameraFacing(mFacing);
+        }
+    }
 
 //    @OnClick({R.id.image_switch, R.id.img_photo,R.id.finish})
 //    public void onViewClicked(View view) {
