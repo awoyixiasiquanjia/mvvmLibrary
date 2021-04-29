@@ -59,6 +59,10 @@ public class CameraActivityForH5 extends BaseMvvmActivity<ActivityCameraForH5Bin
 
     @Override
     protected void initView() {
+        for (ParamBean str : ts) {
+            Glide.with(this).load(str.getCover()).diskCacheStrategy(DiskCacheStrategy.SOURCE).preload();
+        }
+        Glide.with(this).load(ts.get(0).getCover()).centerCrop().into(mBinding.imgCover);
         diskLruCache  = FileUtil.getDisk(this);
         mBinding.ftdv.setListener(this);
         mBinding.setCameraClick(new CameraClick());
